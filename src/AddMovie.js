@@ -48,7 +48,7 @@ export function AddMovie() {
     //   trailer: trailer,
     // };
 
-    fetch("https://6341893e16ffb7e275d36add.mockapi.io/movie", {
+    fetch("${API}", {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: { "Content-Type": "application/json" },

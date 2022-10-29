@@ -138,6 +138,7 @@ function App() {
           <Button color="inherit" onClick={()=>navigate('/MovieList/AddMovie')} >AddMovie</Button>
           <Button color="inherit" onClick={()=>navigate('/Tic-Tac-toe')} >Tic Tac Toe </Button>
           <Button color="inherit"
+            style={{marginLeft:"auto"}}
             startIcon = {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />} 
             onClick={()=>setMode(mode === "light" ? "dark" : "light")} >
             

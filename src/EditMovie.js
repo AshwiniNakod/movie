@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { Formik, useFormik } from "formik";
 import * as yup from "yup";
+import { API } from "./global";
 
 const movieValidationSchema = yup.object({
   name: yup.
@@ -40,7 +41,7 @@ export function EditMovie() {
   const [movie, setMovie] = useState(null);
 
   const getMovie = () => {
-    fetch(`https://6341893e16ffb7e275d36add.mockapi.io/movie/${id}`, {
+    fetch(`${API}/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -70,7 +71,7 @@ function EditMovieForm({ movie }) {
     //   trailer: trailer,
     // };
 
-    fetch(`https://6341893e16ffb7e275d36add.mockapi.io/movie/${movie.id}`, {
+    fetch(`${API}/${movie.id}`, {
       method: "PUT",
       body: JSON.stringify(updatedMovie),
       headers: { "Content-Type": "application/json" },
