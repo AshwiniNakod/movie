@@ -14,7 +14,7 @@ export function MovieList() {
 
 
   const getMovies = () =>{
-    fetch("${API}", 
+    fetch(`${API}/movies`, 
           {method:"GET"})
     .then((data)=>data.json())
     .then((mvs)=>setMovieList(mvs));
