@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { Formik, useFormik } from "formik"
 import * as yup from "yup";
+import { API } from "./global";
 
 const movieValidationSchema = yup.object({
   name: yup.
@@ -48,7 +49,7 @@ export function AddMovie() {
     //   trailer: trailer,
     // };
 
-    fetch("${API}", {
+    fetch(`${API}/movies`, {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: { "Content-Type": "application/json" },

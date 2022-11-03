@@ -33,11 +33,17 @@ export function Movie({ movie, id, deleteButton,editButton}) {
 
       <div className='movie-spec'>
         <h2 className='movie-name'>{movie.name}</h2>
-        <IconButton onClick={() => { setShow(!show); }} aria-label="Movie details" color="primary">
-          {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        <IconButton 
+              onClick={() => { setShow(!show); }} 
+              aria-label="Movie summary" 
+              color="primary">
+              {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </IconButton>
 
-        <IconButton onClick={() => navigate(`/Movie/${id}`)} aria-label="Movie details" color="primary">
+        <IconButton 
+              onClick={() => navigate(`/Movie/${id}`)} 
+              aria-label="Movie details" 
+              color="primary">
           <InfoIcon />
         </IconButton>
 

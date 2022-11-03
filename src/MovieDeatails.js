@@ -14,7 +14,7 @@ export function MovieDeatails() {
 
 
   const getMovie = () =>{
-    fetch(`${API}/${id}`, 
+    fetch(`${API}/movies/${id}`, 
           {method:"GET"})
     .then((data)=>data.json())
     .then((mv)=>setMovie(mv));
@@ -42,7 +42,7 @@ export function MovieDeatails() {
       <iframe width="100%"
         height="650"
         src={movie.trailer}
-        title="Jai Bhim - Official Hindi Trailer | Suriya | Amazon Prime Video"
+        title={movie.name}
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div className='movie-detail-container'>

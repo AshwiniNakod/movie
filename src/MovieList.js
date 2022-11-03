@@ -25,25 +25,25 @@ export function MovieList() {
   useEffect(()=>getMovies(),[])
 
   const deleteMovie = (id) =>{ 
-    fetch(`${API}/${id}`, 
+    fetch(`${API}/movies/${id}`, 
     {method:"DELETE"})
     .then(()=>getMovies())
 
   }  
 
-   
+     
   return (
     <div>
 
       <div className='movie-list'>
         {movieList.map((mv, index) => (
-        <Movie key={mv.id} 
+        <Movie key={mv._id} 
                movie={mv} 
-               id={mv.id}
+               id={mv._id}
                deleteButton={
                               <IconButton 
                               style={{marginLeft:"auto"}}
-                              onClick={() => deleteMovie(mv.id)} 
+                              onClick={() => deleteMovie(mv._id)} 
                               aria-label="Movie details" 
                               color="error">
                                 <DeleteIcon />
@@ -52,7 +52,7 @@ export function MovieList() {
                editButton=
                 {
                   <IconButton 
-                  onClick={() => navigate(`/MovieList/Edit/${mv.id}`)} 
+                  onClick={() => navigate(`/MovieList/Edit/${mv._id}`)} 
                   aria-label="Movie details" 
                   color="secondary">
                     <EditIcon />

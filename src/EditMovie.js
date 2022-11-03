@@ -7,30 +7,28 @@ import * as yup from "yup";
 import { API } from "./global";
 
 const movieValidationSchema = yup.object({
-  name: yup.
-    string().
-    min(5,"Need bigger name").
-    required("why not fill this name"),
-  poster: yup.
-    string().
-    min(5,"Need bigger poster").
-   required("why not fill this poster"),
-  rating: yup.
-   number().
-   min(1,"Need bigger rating").
-   max(10,"too much rating").
-   required("why not fill this rating"),
-  summary: yup.
-   string().
-   min(20,"Need bigger summary").
-   required("why not fill this summary"),
-  trailer: yup.
-   string().
-   min(5,"Need bigger trailer").
-   required("why not fill this trailer"),
-
-  
-})
+  name: yup
+    .string()
+    .min(5, "Need bigger name")
+    .required("why not fill this name"),
+  poster: yup
+    .string()
+    .min(5, "Need bigger poster")
+    .required("why not fill this poster"),
+  rating: yup
+    .number()
+    .min(1, "Need bigger rating")
+    .max(10, "too much rating")
+    .required("why not fill this rating"),
+  summary: yup
+    .string()
+    .min(20, "Need bigger summary")
+    .required("why not fill this summary"),
+  trailer: yup
+    .string()
+    .min(5, "Need bigger trailer")
+    .required("why not fill this trailer"),
+});
 
 export function EditMovie() {
   const { id } = useParams();
@@ -41,7 +39,7 @@ export function EditMovie() {
   const [movie, setMovie] = useState(null);
 
   const getMovie = () => {
-    fetch(`${API}/${id}`, {
+    fetch(`${API}/movies/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -71,29 +69,30 @@ function EditMovieForm({ movie }) {
     //   trailer: trailer,
     // };
 
-    fetch(`${API}/${movie.id}`, {
+    fetch(`${API}/movies/${movie._id}`, {
       method: "PUT",
       body: JSON.stringify(updatedMovie),
       headers: { "Content-Type": "application/json" },
     }).then(() => navigate("/MovieList"));
 
     // setMovieList([...movieList, newMovie]);
-    console.log(updatedMovie);
+    console.log(updatedMovie,movie._id);
   };
-  const {handleSubmit,values,handleChange,handleBlur,errors,touched} = useFormik({
-    initialValues: {
-      name: "",
-      poster: "",
-      rating: "",
-      summary: "",
-      trailer: "",
-    },
-    validationSchema : movieValidationSchema,
-    onSubmit:(updatedMovie)=>{
-      console.log('onSubmit',updatedMovie)
-      editMovie(updatedMovie)
-    }
-})
+  const { handleSubmit, values, handleChange, handleBlur, errors, touched } =
+    useFormik({
+      initialValues: {
+        name: movie.name,
+        poster: movie.poster,
+        rating: movie.rating,
+        summary: movie.summary,
+        trailer: movie.trailer,
+      },
+      validationSchema: movieValidationSchema,
+      onSubmit: (updatedMovie) => {
+        console.log("onSubmit", updatedMovie);
+        editMovie(updatedMovie);
+      },
+    });
 
   return (
     <form onSubmit={handleSubmit}>
@@ -137,9 +136,8 @@ function EditMovieForm({ movie }) {
           onBlur={handleBlur}
           error={touched.rating && errors.rating}
           helperText={touched.rating && errors.rating ? errors.rating : ""}
-          
+
           // onChange={(event) => {setRating(event.target.value);}}
-          
         />
 
         <TextField
@@ -172,11 +170,12 @@ function EditMovieForm({ movie }) {
         />
 
         {/* <button onClick={addMovie}>Add Movie</button> */}
-        <Button 
+        <Button
           // onClick={editMovie}
           type="submit"
-          variant="outlined" 
-          color="success">
+          variant="outlined"
+          color="success"
+        >
           Save
         </Button>
 
